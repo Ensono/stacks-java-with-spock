@@ -17,7 +17,7 @@ The tests are written in GROOVY.
 
 ************ WHY SPOCK ? ************
 
-Junit + jbehave + jmock = Spock
+Junit + Jbehave + Jmock = Spock
 
 
 Spock leverages the benefits of existing Java frameworks: JUnit, TestNG, JBehave, Cucumber, Mockito, JMock and EasyMock.
@@ -90,7 +90,7 @@ given: creation,initialization and stubbing
  when: operation to test
  then: assertion and interaction verification
 
-************************************ FIELDS : ***************************
+******************************** FIELDS : *********************************
 
 def obj = new ClassUnderSpecification()
 def coll = new Collaborator()
@@ -102,7 +102,7 @@ It is good practice to initialize them right at the point of declaration.
 Sometimes you need to share an object between feature methods. For example, the object might be very expensive to create, or you might want your feature methods to interact with each other. To achieve this, declare a @Shared field.
 
 
-**************************** FIXTURE or LIFE CYCLE METHODS  : ****************************
+*********************** FIXTURE or LIFE CYCLE METHODS  : ******************
 
 Fixture methods are responsible for setting up and cleaning up the environment in which feature methods are run.
 
@@ -151,13 +151,13 @@ SPOCK + SPRING TEST - https://objectpartners.com/2019/05/21/speed-up-spock-sprin
 SPRING @WebMvcTest + SPOCK FRAMEWORK - https://allegro.tech/2018/04/Spring-WebMvcTest-with-Spock.html
 SPOCK WEB CONSOLE : http://meetspock.appspot.com/  (allows to view,edit and run Spock specifications)
 
-****************************** OFFICIAL DOCUMENTATION :**************************
+****************************** OFFICIAL DOCUMENTATION :*********************
 
 http://spockframework.org/spock/docs/1.3/index.html
 http://spockframework.org/spock/javadoc/1.1-rc-4/index.html
 
 
-************************************* SUMMARY *************************************
+************************************* SUMMARY *******************************
 
 The right choice of testing framework is always a matter of many factors.
 If it is a brand new project,SPOCK is definitely a great consideration.
@@ -178,8 +178,7 @@ If you prefer
    - beautiful parameterized and exception testing
 
 
-****************************************************************************************************************************************************
-****************************************************************************************************************************************************
+***************************************************************************************************
 
 SAMPLE APPLICATION WITH SPOCK :
 
@@ -201,7 +200,7 @@ Once the Spring boot application is started, run the test file present under :  
 - Play around
 - When test fails ,the console details the stack more elegantly.
 
-****************************************************************************************************************************************************
+****************************************************************************************************
 
 
 
