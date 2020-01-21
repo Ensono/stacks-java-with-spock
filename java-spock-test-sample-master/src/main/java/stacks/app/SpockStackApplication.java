@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"stacks.spock","groovy"})
+@ComponentScan({"stacks.spock", "stacksgroovy"})
 public class SpockStackApplication {
 
     public static void main(final String[] args) {

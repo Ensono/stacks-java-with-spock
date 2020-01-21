@@ -12,6 +12,8 @@ import spock.lang.Subject
 import stacks.spock.functionalunittest.interfaces.CustomerRepository
 import stacks.spock.webservicetest.controller.CustomerController
 import stacks.spock.webservicetest.entities.Customer
+import stacksgroovy.CustomerDao
+import stacksgroovy.CustomerService
 
 /**
  * Test using Spring MockMvc
@@ -20,9 +22,12 @@ import stacks.spock.webservicetest.entities.Customer
 class CustomerControllerSpec extends Specification {
     MockMvc mockMvc
     def repository
+    CustomerDao customerDao
+    CustomerService customerService
     ObjectMapper mapper = new ObjectMapper()
     def requestUri = '/api/customer'
     def groovyRequestUri = '/api/welcome'
+    def groovyRequestUriCustomer = '/api/customerDetails'
 
     Customer jon
     String jonJsonString
@@ -31,6 +36,9 @@ class CustomerControllerSpec extends Specification {
     void setup() {
         // Don't want to call real service which connects to db, so use mock
         repository = Mock(CustomerRepository)
+        customerDao = Mock(CustomerDao)
+        customerService = Mock(CustomerService)
+
 
         // Init controller with mock:
         //Basically, we can use def where we don’t care about the type
@@ -80,12 +88,28 @@ class CustomerControllerSpec extends Specification {
 
     //    Note : below test is for the controller written in Groovy
     //    Run the test from terminal using following command -> curl localhost:8080/api/welcome
+    //    for some reason unable to run from  IDE
     void 'get groovy customer returns a single groovy customer'() {
 
         expect:
         mockMvc.perform(MockMvcRequestBuilders
                 .get(groovyRequestUri))
                 .andExpect(MockMvcResultMatchers.status().isOk())
+    }
+
+    //    Note : below test is for the controller written in Groovy
+    //    Run the test from terminal using following command -> curl localhost:8080/api/customerDetails/1
+    //    for some reason unable to run from  IDE
+    void 'get groovy customer deyails'() {
+
+        given:
+        1 * customerDao.customerById(1) >> jon
+
+        expect:
+        mockMvc.perform(MockMvcRequestBuilders
+                .get(groovyRequestUriCustomer, "1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+
     }
 
 }
