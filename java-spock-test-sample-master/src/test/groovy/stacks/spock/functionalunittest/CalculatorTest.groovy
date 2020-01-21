@@ -117,4 +117,18 @@ class CalculatorTest extends Specification {
         then:
         notThrown(NullPointerException)
     }
+
+    def "string equality"() {
+        given:
+        String st1 = "hello"
+        String st2 = "HELLO"
+
+        when:
+        st2 = st2.toLowerCase()
+
+        then:
+        st2 == st1
+
+
+    }
 }
