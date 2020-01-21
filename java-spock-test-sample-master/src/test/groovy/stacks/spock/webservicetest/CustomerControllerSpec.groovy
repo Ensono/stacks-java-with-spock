@@ -22,6 +22,7 @@ class CustomerControllerSpec extends Specification {
     def repository
     ObjectMapper mapper = new ObjectMapper()
     def requestUri = '/api/customer'
+    def groovyRequestUri = '/api/welcome'
 
     Customer jon
     String jonJsonString
@@ -61,6 +62,7 @@ class CustomerControllerSpec extends Specification {
                 .andExpect(MockMvcResultMatchers.content().json(jonJsonString))
     }
 
+
     void 'save customer'() {
 
         //any argument is specified as follows in groovy (_).For ex: repository.save(_)
@@ -73,6 +75,16 @@ class CustomerControllerSpec extends Specification {
                 .post(requestUri)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jonJsonString))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+    }
+
+    //    Note : below test is for the controller written in Groovy
+    //    Run the test from terminal using following command -> curl localhost:8080/api/welcome
+    void 'get groovy customer returns a single groovy customer'() {
+
+        expect:
+        mockMvc.perform(MockMvcRequestBuilders
+                .get(groovyRequestUri))
                 .andExpect(MockMvcResultMatchers.status().isOk())
     }
 
