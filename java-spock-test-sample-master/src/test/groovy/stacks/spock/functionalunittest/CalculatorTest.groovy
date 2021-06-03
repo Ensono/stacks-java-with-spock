@@ -32,7 +32,7 @@ class CalculatorTest extends Specification {
         //where - Used for data driven approach
         where:
         x | y  | sum
-        1 | 2  | 4
+        1 | 2  | 3
         2 | 5  | 7
         3 | -1 | 2
 
@@ -74,7 +74,7 @@ class CalculatorTest extends Specification {
         where:
         a | b | c
         1 | 3 | 3
-        7 | 4 | 4
+        7 | 4 | 7
         0 | 0 | 0
     }
 
