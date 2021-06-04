@@ -1,7 +1,6 @@
 package stacks.spock.webservicetest
 
-import groovyx.net.http.RESTClient
-import net.sf.json.JSON
+import groovyx.net.http.HttpBuilder
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.*
 
@@ -23,13 +22,17 @@ class WarehouseControllerSpec extends Specification {
 
     //you can create RESTClient object either way
     @Shared
-    RESTClient client = new RESTClient("http://localhost:8080")
-    //def client = new RESTClient("http://localhost:8080")
+    def client = HttpBuilder.configure {
+        request.uri = 'http://localhost:8080'
+    }
 
     //GET METHOD
     def "Check Api status"() {
         when: "a api call is made to /status endpoint"
-        def response = client.get(path: "status", requestContentType: JSON)
+        def response = client.get {
+            request.uri.path = "/status"
+            request.contentType = 'application/json'
+        }
 
         then: "the appropriate message is expected"
         with(response) {
